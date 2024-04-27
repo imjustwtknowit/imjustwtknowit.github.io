@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Web Page</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Welcome to imjustwtknowit Playground!</h1>
+  <p>Things here may change time to time!</p>
+  <br>
+  <div class="form">
+    <form method="post">
+      <ul>
+        <li>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username">
+        </li>
+        <li>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password">
+        </li>
+        <li>
+          <input id="submit" type="submit" value="Login">
+        </li>
+	<li><br><br></li>
+        <li>
+          <button type="button" onclick="getRandom()">Have a random number!</button>
+        </li>
+        <li>
+          <label for="max">Max value:</label>
+          <input type="text" id="max" name="max">
+        </li>
+	      <li>
+          <label for="random">Random:</label>
+          <input type="text" id="random" name="label" disabled>
+        </li>
+      </ul>
+    </form>
+  </div>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
