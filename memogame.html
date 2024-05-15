@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Memory Game</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Memory Game</h1>
+  <p>Welcome to Memory Game! Click two box and see if it has the same pattern.</p>
+  <p id="check"></p>
+  <p id="ch"></p>
+  <select name="amount" id="am">
+    <option value="4">4</option>
+    <option value="8">8</option>
+    <option value="12">12</option>
+    <option value="16">16</option>
+    <option value="20">20</option>
+  </select>
+  
+  
+  <button id="gen" type="button">Generate</button>
+  <br>
+  <br>
+  <div id="test">
+    
+  </div>
+  <br>
+  <button type="button" onclick="getAns()" id="hint" disabled>Show hint</button>
+  <p id="te"></p>
+  <script src="memoscript.js"></script>
+</body>
+</html>
