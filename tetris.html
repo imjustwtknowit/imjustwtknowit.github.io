@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tetris</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="style.css" rel="stylesheet">
+</head>
+<body onkeydown="keyDrop(event)">
+  <h1>Tetris</h1>
+  <p>This is Tetris! Press Arrow Right and Arrow Left to move the piece. Press S to accelerate the piece movement. Press Q to rotate. Try to completely fill each row!</p>
+  <br>
+  <button type="button" id="stBut" onclick="startGame()">Start</button>
+  <p id="test"></p>
+  <p id="pos"></p>
+  <br>
+  <svg id="svgT" version="1.1"
+     width="500" height="500"
+     xmlns="http://www.w3.org/2000/svg">
+  <rect id="r0" x="0" y="0" width="500" height="500" stroke="black" fill="transparent"></rect>
+  <text id="tInfo" x="360" y="40" fill="black"></text> 
+  <text id="tScore" x="360" y="60" fill="black">Score: </text> 
+  </svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
