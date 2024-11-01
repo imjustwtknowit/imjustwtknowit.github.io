@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Minesweeper</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="style.css" rel="stylesheet">
+</head>
+<body onkeydown="keyDown(event)" onkeyup="keyUp(event)">
+  <h1>Minesweeper</h1>
+  <p>Click the squares to open them. Click while holding Ctrl to flag them. Double click to open all adjacent squares.</p>
+  <br>
+  <p id="text"></p>
+  <br>
+  <button type="button" id="startBut" onclick="newGame()">New Game</button>
+  <button type="button" id="solveBut" onclick="solveGame()" disabled>Solve Game</button>
+  <br>
+  <br>
+  <svg id="svgT" version="1.1"
+     width="500" height="500"
+     xmlns="http://www.w3.org/2000/svg">
+  <rect id="r0" x="0" y="0" width="500" height="500" stroke="black" fill="transparent"></rect>
+  
+  <image id="bomb" href="https://uxwing.com/wp-content/themes/uxwing/download/crime-security-military-law/bomb-icon.png" x="5" y="5" width="15" height="15"></image>
+  <text id="bC" x="25" y="20" fill="black" font-size="15">count: </text>
+  <image id="flag" href="https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/flag-icon.png" x="5" y="25" width="15" height="15"></image>
+  <text id="fC" x="25" y="40" fill="black" font-size="15">count: </text>
+  </svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
