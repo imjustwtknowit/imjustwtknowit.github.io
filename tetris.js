@@ -296,24 +296,29 @@ function keyDrop(event){
 }
 
 function toRight(){
+  if (checkMove("r") == true){
   for (let i = q - 3; i < q + 1; i++){
     let bId = i;
     const bl = document.getElementById(bId);
     let x = Number(bl.getAttribute("x"));
     bl.setAttribute("x", x + u);
   }
+  }
 }
 
 function toLeft(){
+  if (checkMove("l") == true){
   for (let i = q - 3; i < q + 1; i++){
       let bId = i;
       const bl = document.getElementById(bId);
       let x = Number(bl.getAttribute("x"));
       bl.setAttribute("x", x - u);
   }
+  }
 }
 
 function toDrop(){
+    if (checkMove("d") == true){
     for (let i = q - 3; i < q + 1; i++){
       let bId = i;
       const bl = document.getElementById(bId);
@@ -322,6 +327,8 @@ function toDrop(){
     }
     score += 1;
     tSc.innerHTML = "Score: " + score;
+    }
+
 }
 
 function toRotate(){
