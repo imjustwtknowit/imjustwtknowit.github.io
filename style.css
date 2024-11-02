@@ -16,6 +16,11 @@ ul {
   padding: 10px;
 }
 
+button.navtetris {
+  height: 200px;
+  width: 200px;
+}
+
 label {
   display: inline-block;
   text-align: right;
