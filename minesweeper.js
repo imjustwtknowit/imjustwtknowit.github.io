@@ -4,6 +4,7 @@ const fLink = document.getElementById("flag").getAttribute("href");
 const bLink = document.getElementById("bomb").getAttribute("href");
 const stBut = document.getElementById("startBut");
 const svBut = document.getElementById("solveBut");
+const chBut = document.getElementById("changeBut");
 
 const fCount = document.getElementById("fC");
 const bCount = document.getElementById("bC");
@@ -464,5 +465,15 @@ function keyUp(event){
   let key = event.key;
   if (key = "Control"){
     ctrl = false;
+  }
+}
+
+function changeType(){
+  if (ctrl == false){
+    ctrl = true;
+    chBut.innerHTML = "Flag";
+  } else if (ctrl == true){
+    ctrl = false;
+    chBut.innerHTML = "Open";
   }
 }
