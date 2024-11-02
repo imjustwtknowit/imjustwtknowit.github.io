@@ -285,20 +285,35 @@ function doMove(){
 function keyDrop(event){
   let key = event.key;
   if (key == "ArrowRight" && checkMove("r") == true){
-    for (let i = q - 3; i < q + 1; i++){
-      let bId = i;
-      const bl = document.getElementById(bId);
-      let x = Number(bl.getAttribute("x"));
-      bl.setAttribute("x", x + u);
-    }
+    toRight();
   } else if (key == "ArrowLeft" && checkMove("l") == true){
-    for (let i = q - 3; i < q + 1; i++){
+    toLeft();
+  } else if ((key == "s" || key == "S") && checkMove("d") == true){
+    toDrop();
+  } else if (key == "q" || key == "Q"){
+    toRotate();
+  }
+}
+
+function toRight(){
+  for (let i = q - 3; i < q + 1; i++){
+    let bId = i;
+    const bl = document.getElementById(bId);
+    let x = Number(bl.getAttribute("x"));
+    bl.setAttribute("x", x + u);
+  }
+}
+
+function toLeft(){
+  for (let i = q - 3; i < q + 1; i++){
       let bId = i;
       const bl = document.getElementById(bId);
       let x = Number(bl.getAttribute("x"));
       bl.setAttribute("x", x - u);
-    }
-  } else if ((key == "s" || key == "S") && checkMove("d") == true){
+  }
+}
+
+function toDrop(){
     for (let i = q - 3; i < q + 1; i++){
       let bId = i;
       const bl = document.getElementById(bId);
@@ -307,14 +322,15 @@ function keyDrop(event){
     }
     score += 1;
     tSc.innerHTML = "Score: " + score;
-  } else if (key == "q" || key == "Q"){
+}
+
+function toRotate(){
     if (rot == 4){
       rot = 1;
     } else {
       rot += 1;
     }
     rotateIt(rot, pcNum);
-  }
 }
 
 
