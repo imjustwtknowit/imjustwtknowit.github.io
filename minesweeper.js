@@ -322,6 +322,8 @@ function showNum(c, n){
     const oTile = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     oTile.setAttribute("x", x);
     oTile.setAttribute("y", y);
+    oTile.setAttribute("width", u);
+    oTile.setAttribute("height", u);
     oTile.setAttribute("fill", "transparent");
     oTile.setAttribute("stroke", "transparent");
     oTile.setAttribute("stroke-width", 1);
