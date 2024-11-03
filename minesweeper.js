@@ -324,7 +324,7 @@ function showNum(c, n){
     oTile.setAttribute("y", y);
     oTile.setAttribute("width", u);
     oTile.setAttribute("height", u);
-    oTile.setAttribute("fill", "white");
+    oTile.setAttribute("fill", "transparent");
     oTile.setAttribute("stroke", "transparent");
     oTile.setAttribute("stroke-width", 1);
     oTile.setAttribute("class", "tile");
