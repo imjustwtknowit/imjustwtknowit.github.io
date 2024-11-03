@@ -318,6 +318,19 @@ function showNum(c, n){
     tNum.appendChild(nText);
     svgF.appendChild(tNum);
     sArr.st[sArr.id.indexOf(tnId)] = 1;
+
+    const oTile = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    oTile.setAttribute("x", x);
+    oTile.setAttribute("y", y);
+    oTile.setAttribute("fill", "transparent");
+    oTile.setAttribute("stroke", "transparent");
+    oTile.setAttribute("stroke-width", 1);
+    oTile.setAttribute("class", "tile");
+    oTile.setAttribute("id", tnId);
+    oTile.addEventListener("dblclick", function (){
+    openAround(tnId);
+    });
+    svgF.appendChild(oTile);
   }
   tTile.removeEventListener("click", handArr.func[handArr.id.indexOf(tnId)])
   tTile.addEventListener("dblclick", function (){
