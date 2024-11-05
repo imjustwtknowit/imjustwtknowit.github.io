@@ -328,7 +328,6 @@ function showNum(c, n){
     oTile.setAttribute("stroke", "transparent");
     oTile.setAttribute("stroke-width", 1);
     oTile.setAttribute("class", "tile");
-    oTile.setAttribute("id", tnId);
     oTile.addEventListener("dblclick", function (){
     openAround(tnId);
     });
@@ -385,6 +384,7 @@ function flagIt(c){
   const tileF = document.getElementById(c);
   flagged ++;
   let flagId = "f" + flagged;
+  let oFlagId = "o" + flagId;
   let col = c.charCodeAt(0) - 64;
   let row = c.charCodeAt(1) - 64;
   let x = x0 + (col - 1)*u;
@@ -401,6 +401,38 @@ function flagIt(c){
   fCount.textContent = "count: " + flagged + "/" + nBomb;
   fArr.tId.push(c);
   fArr.fId.push(flagId);
+
+  const oFlag = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  oFlag.setAttribute("x", x);
+  oFlag.setAttribute("y", y);
+  oFlag.setAttribute("width", u);
+  oFlag.setAttribute("height", u);
+  oFlag.setAttribute("fill", "transparent");
+  oFlag.setAttribute("stroke", "transparent");
+  oFlag.setAttribute("stroke-width", 1);
+  oFlag.setAttribute("class", "flag");
+  oFlag.setAttribute("id", oFlagId);
+  oFlag.addEventListener("click", function(){
+    unFlagIt(flagId);
+  })
+  svgF.appendChild(oFlag);
+
+
+  
+}
+
+function unFlagIt(id){
+  let flagId = id;
+  let oFlagId = "o" + flagId;
+  let fElem = document.getElementById(flagId);
+  let oFlag = document.getElementById(oFlagId);
+  
+  fElem.remove();
+  oFlag.remove();
+  flagged --;
+  fArr.tId.splice(fArrId, 1);
+  fArr.fId.splice(fArrId, 1);
+  fCount.textContent = "count: " + flagged + "/" + nBomb;
 }
 
 function checkWin(){
