@@ -364,17 +364,7 @@ function showBomb(){
 }
 
 function addFlag(c){
-  if (fArr.tId.includes(c) == true){
-    flagged --;
-    let fArrId = fArr.tId.indexOf(c);
-    let fElem = document.getElementById(fArr.fId[fArrId]);
-    fElem.remove();
-    fArr.tId.splice(fArrId, 1);
-    fArr.fId.splice(fArrId, 1);
-    fCount.textContent = "count: " + flagged + "/" + nBomb;
-  } else {  
-    flagIt(c);
-  }
+  flagIt(c);
   if (flagged == nBomb){
     checkWin();
   }
