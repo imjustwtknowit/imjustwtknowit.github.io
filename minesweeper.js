@@ -373,7 +373,7 @@ function addFlag(c){
 function flagIt(c){
   const tileF = document.getElementById(c);
   flagged ++;
-  let flagId = "f" + flagged;
+  let flagId = "f" + c;
   let oFlagId = "o" + flagId;
   let col = c.charCodeAt(0) - 64;
   let row = c.charCodeAt(1) - 64;
@@ -413,15 +413,17 @@ function flagIt(c){
 
 function unFlagIt(id){
   let flagId = id;
+  let fArrIndex = fArr.fId.indexOf(flagId);
   let oFlagId = "o" + flagId;
   let fElem = document.getElementById(flagId);
   let oFlag = document.getElementById(oFlagId);
   
+  
   fElem.remove();
   oFlag.remove();
   flagged --;
-  fArr.tId.splice(fArrId, 1);
-  fArr.fId.splice(fArrId, 1);
+  fArr.tId.splice(fArrIndex, 1);
+  fArr.fId.splice(fArrIndex, 1);
   fCount.textContent = "count: " + flagged + "/" + nBomb;
 }
 
@@ -495,6 +497,7 @@ function keyDown(event){
   let key = event.key;
   if (key = "Control"){
     ctrl = true;
+    chBut.setAttribute("disabled", "");
   }
 }
 
@@ -504,6 +507,8 @@ function keyUp(event){
     ctrl = false;
   }
 }
+
+
 
 function changeType(){
   if (ctrl == false){
