@@ -290,9 +290,12 @@ function evalRow(){
   
   
   //tText.innerHTML = evalClr + " | " + clrTrue + " | " + posTrue;
-  
+	
   if (nClr == 4 && pClr == 4){
   	tText.innerHTML = "You win!"
+    document.getElementById("oAns").remove();
+  } else if (row == 9) {
+    tText.innerHTML = "You lose!"
     document.getElementById("oAns").remove();
   } else {
     let rowOpen = (row + 1);
