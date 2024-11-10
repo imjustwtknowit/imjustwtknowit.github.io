@@ -349,3 +349,18 @@ function restartGame(){
   drawBoard();
   genGame();
 }
+
+function solveGame(){
+  for (i = 0; i < 4; i ++){
+    let num = i + 1;
+    let id = "r" + row + "b" + num;
+    const tBig = document.getElementById(id);
+    tBig.removeEventListener("click", handArr.func[handArr.id.indexOf(id)]);
+  }
+  const overEval = document.getElementsByClassName("oEval");
+  while (overEval.length > 0){
+    overEval[0].remove();
+  }
+  tText.innerHTML = "Solved!";
+  document.getElementById("oAns").remove();
+}
