@@ -313,7 +313,7 @@ async function calcIt(){
     pl1.setAttribute("cy", y0 - y1 - (yVal - valAty1)*yI);
     pl1.setAttribute("r", 1.5);
     pl1.setAttribute("stroke", "transparent");
-    pl1.setAttribute("fill", "lime");
+    pl1.setAttribute("fill", "black");
     pl1.setAttribute("class", "plot");
     svgF.appendChild(pl1);
     
@@ -326,7 +326,7 @@ async function calcIt(){
     pl2.setAttribute("cy", y0 - y1h - (h - valAty1h)*yI);
     pl2.setAttribute("r", 1.5);
     pl2.setAttribute("stroke", "transparent");
-    pl2.setAttribute("fill", "lime");
+    pl2.setAttribute("fill", "black");
     pl2.setAttribute("class", "plot");
     svgF.appendChild(pl2);
     
@@ -335,7 +335,7 @@ async function calcIt(){
     pl3.setAttribute("cy", y0 - y1 - (wAge - valAty1)*yI);
     pl3.setAttribute("r", 1.5);
     pl3.setAttribute("stroke", "transparent");
-    pl3.setAttribute("fill", "lime");
+    pl3.setAttribute("fill", "black");
     pl3.setAttribute("class", "plot");
     svgF.appendChild(pl3);
     
@@ -344,7 +344,7 @@ async function calcIt(){
     pl4.setAttribute("cy", y0 - y1h - (h - valAty1h)*yI);
     pl4.setAttribute("r", 1.5);
     pl4.setAttribute("stroke", "transparent");
-    pl4.setAttribute("fill", "lime");
+    pl4.setAttribute("fill", "black");
     pl4.setAttribute("class", "plot");
     svgF.appendChild(pl4);
     
@@ -353,7 +353,7 @@ async function calcIt(){
     l1.setAttribute("y1", y0 - y1h - (h - valAty1h)*yI);
     l1.setAttribute("x2", x0 + (tAge - valAtx0)*xI);
     l1.setAttribute("y2", y0 - y1h - (h - valAty1h)*yI);
-    l1.setAttribute("stroke", "lime");
+    l1.setAttribute("stroke", "black");
     l1.setAttribute("class", "plot");
     svgF.appendChild(l1);
     
@@ -362,7 +362,7 @@ async function calcIt(){
     l2.setAttribute("y1", y0 - y1h - (h - valAty1h)*yI);
     l2.setAttribute("x2", x0 + (tAge - valAtx0)*xI);
     l2.setAttribute("y2", y0 - y1 - (wAge - valAty1)*yI);
-    l2.setAttribute("stroke", "lime");
+    l2.setAttribute("stroke", "black");
     l2.setAttribute("class", "plot");
     svgF.appendChild(l2);
     
@@ -372,7 +372,7 @@ async function calcIt(){
     pl.setAttribute("cy", y0 - y1 - (yVal - valAty1)*yI);
     pl.setAttribute("r", 1.5);
     pl.setAttribute("stroke", "transparent");
-    pl.setAttribute("fill", "lime");
+    pl.setAttribute("fill", "black");
     pl.setAttribute("class", "plot");
     svgF.appendChild(pl);
 
@@ -691,7 +691,7 @@ function testPlot(){
     pl.setAttribute("cy", y0 - y1 - (yVal - valAty1)*yI);
     pl.setAttribute("r", 1.5);
     pl.setAttribute("stroke", "transparent");
-    pl.setAttribute("fill", "lime");
+    pl.setAttribute("fill", "black");
     pl.setAttribute("id", "plot");
     svgF.appendChild(pl);
   }
