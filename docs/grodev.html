@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home imjustwtknowit</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="grodevstyle.css" rel="stylesheet">
+</head>
+<body>
+<div class="row">
+  <div class="column left">
+    <h1>Growth Chart</h1>
+    <p>Things here may change time to time!</p>
+    <p id="tText"></p>
+    <span>Jenis kelamin: </soan><br>
+      <input id="Lk" type="radio" name="gender" value="1">
+      <label for="Lk">Laki-laki</label>
+      <input id="Pr" type="radio" name="gender" value="2">
+      <label for="Pr">Perempuan</label>
+      <br><br>
+    <label for="aYear">Usia: </label><br>
+      <input type="text" id="aYear" size="2" onchange="resetDate()">
+      <span>tahun</span> 
+      <input type="text" id="aMonth" size="2" onchange="resetDate()"> 
+      <span>bulan</span>
+      <br><br>
+    <label for="bDate">Tanggal lahir: </label><br>
+      <input type="date" id="bDate" onchange="changeAge()">
+      <br><br>
+    <label for="weight">Berat badan: </label><br>
+      <input type="text" id="weight" size="5">
+      <span>kg</span><br><br>
+    <label for="height">Tinggi badan: </label><br>
+      <input type="text" id="height" size="5">
+      <span>cm</span><br><br>
+    <span>Indeks massa tubuh: </span><br>
+      <span id="bmi">____</span><span> kg/cm2</span><br><br>
+    <button type="button" id="calcBut" onclick="calcIt()">Calculate!</button><br><br>
+    <span>Interpretasi: </span><br><span id="res"></span>
+    <br>
+  </div>
+  <div class="column right">
+    <ul>
+      <li><button type="button" class="chartBut" id="wfa" onclick="test('wfa')">BB/U</button></li>
+      <li><button type="button" class="chartBut" id="hfa" onclick="test('hfa')">TB/U</button></li>
+      <li><button type="button" class="chartBut" id="wfh" onclick="test('wfh')">BB/TB</button></li>
+      <li><button type="button" class="chartBut" id="bfa" onclick="test('bfa')">IMT/U</button></li>
+    </ul>
+    <svg id="svgF" version="1.1" width="500" height="800" xmlns="http://www.w3.org/2000/svg">
+
+      <image id="img" x="0" y="0" width="500"  href="a"></image>
+      <rect x="0" y="0" width="500" height="800" stroke="black" fill="transparent" onclick="tellMe(event)"></rect>
+
+    </svg>
+  </div>
+</div>
+  </body>
+  <script src="grodev.js"></script>
+ </html>
