@@ -263,7 +263,7 @@ async function calcIt(){
   
   let valArr = getVal(chartType, gen, age, w, h, bmi);
   
-  tText.innerHTML = bmi;
+  //tText.innerHTML = bmi;
   
   let plotVal = valArr[0];
   
@@ -375,7 +375,7 @@ async function calcIt(){
     pl.setAttribute("fill", "red");
     pl.setAttribute("class", "plot");
     svgF.appendChild(pl);
-    tText.innerHTML = "Nope!"
+
   }
 }
 
