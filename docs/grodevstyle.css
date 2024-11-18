@@ -1,0 +1,55 @@
+body {
+  background: beige;
+  color: black;
+  padding: 25px;
+  font-family: sans-serif;
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+
+}
+
+li button { 
+  border: none;
+  padding: 8px;
+  background-color: lightgray;
+}
+
+li button:hover {
+  background-color: silver;
+}
+
+.column {
+  float: left;
+}
+
+.column.left {
+  width: 35%;
+  padding: 15px;
+}
+
+.column.right {
+  width: 60%;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
