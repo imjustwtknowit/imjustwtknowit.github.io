@@ -32,12 +32,12 @@ li button:hover {
 }
 
 .column.left {
-  width: 35%;
-  padding: 15px;
+  width: 40%;
+  padding: 10px;
 }
 
 .column.right {
-  width: 60%;
+  width: 55%;
 }
 
 /* Clear floats after the columns */
