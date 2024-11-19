@@ -321,7 +321,7 @@ async function calcIt(){
     const pl1 = document.createElementNS(svgNS, "circle");
     pl1.setAttribute("cx", x0 + (xVal - valAtx0)*xI);
     pl1.setAttribute("cy", y0 - y1 - (yVal - valAty1)*yI);
-    pl1.setAttribute("r", 1.5);
+    pl1.setAttribute("r", 1.8*r);
     pl1.setAttribute("stroke", "transparent");
     pl1.setAttribute("fill", "black");
     pl1.setAttribute("class", "plot");
@@ -334,7 +334,7 @@ async function calcIt(){
     const pl2 = document.createElementNS(svgNS, "circle");
     pl2.setAttribute("cx", x0 + (xVal - valAtx0)*xI);
     pl2.setAttribute("cy", y0 - y1h - (h - valAty1h)*yI);
-    pl2.setAttribute("r", 1.5);
+    pl2.setAttribute("r", 1.8*r);
     pl2.setAttribute("stroke", "transparent");
     pl2.setAttribute("fill", "black");
     pl2.setAttribute("class", "plot");
@@ -343,7 +343,7 @@ async function calcIt(){
     const pl3 = document.createElementNS(svgNS, "circle");
     pl3.setAttribute("cx", x0 + (tAge - valAtx0)*xI);
     pl3.setAttribute("cy", y0 - y1 - (wAge - valAty1)*yI);
-    pl3.setAttribute("r", 1.5);
+    pl3.setAttribute("r", 1.8*r);
     pl3.setAttribute("stroke", "transparent");
     pl3.setAttribute("fill", "black");
     pl3.setAttribute("class", "plot");
@@ -352,7 +352,7 @@ async function calcIt(){
     const pl4 = document.createElementNS(svgNS, "circle");
     pl4.setAttribute("cx", x0 + (tAge - valAtx0)*xI);
     pl4.setAttribute("cy", y0 - y1h - (h - valAty1h)*yI);
-    pl4.setAttribute("r", 1.5);
+    pl4.setAttribute("r", 1.8*r);
     pl4.setAttribute("stroke", "transparent");
     pl4.setAttribute("fill", "black");
     pl4.setAttribute("class", "plot");
@@ -380,7 +380,7 @@ async function calcIt(){
     const pl = document.createElementNS(svgNS, "circle");
     pl.setAttribute("cx", x0 + (xVal - valAtx0)*xI);
     pl.setAttribute("cy", y0 - y1 - (yVal - valAty1)*yI);
-    pl.setAttribute("r", 1.5);
+    pl.setAttribute("r", 1.8*r);
     pl.setAttribute("stroke", "transparent");
     pl.setAttribute("fill", "black");
     pl.setAttribute("class", "plot");
@@ -699,7 +699,7 @@ function testPlot(){
     const pl = document.createElementNS(svgNS, "circle");
     pl.setAttribute("cx", x0 + (xVal - valAtx0)*xI);
     pl.setAttribute("cy", y0 - y1 - (yVal - valAty1)*yI);
-    pl.setAttribute("r", 1.5);
+    pl.setAttribute("r", 1.8*r);
     pl.setAttribute("stroke", "transparent");
     pl.setAttribute("fill", "black");
     pl.setAttribute("id", "plot");
