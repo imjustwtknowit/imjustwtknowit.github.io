@@ -7,6 +7,16 @@ const b = document.getElementById("bmi");
 
 const calcBut = document.getElementById("calcBut");
 const tText = document.getElementById("tText");
+const rowDiv = document.getElementById("rowDiv");
+
+let newWidth = rowDiv.clientWidth;
+let r;
+if (newWidth < 500){
+	r = newWidth/500;
+} else {
+	r = 1;
+}
+
 const svgF = document.getElementById("svgF");
 const svgNS = "http://www.w3.org/2000/svg";
 const img = document.getElementById("img");
@@ -162,26 +172,26 @@ const wfhValC = {
 
 
 const plotArr = {
-	wfaWhoBoy0: [0, 66, 301, 0, 8, 2, 14.95, 14.05],
-  wfaWhoBoy2: [1, 66, 301, 24, 0, 8, 9.97, 11.5],
-  wfaWhoGirl0: [2, 66, 301, 0, 8, 2, 14.95, 14.05],
-  wfaWhoGirl2: [3, 66, 301, 24, 0, 7, 9.97, 10],
-  hfaWhoBoy0: [4, 66, 301, 0, 12, 45, 14.95, 4.03],
-  hfaWhoBoy2: [5, 66, 301, 24, 19, 80, 9.97, 4.69],
-  hfaWhoGirl0: [6, 66, 301, 0, 12, 45, 14.95, 4.03],
-  hfaWhoGirl2: [7, 66, 301, 24, 19, 80, 9.97, 4.69],
-  wfhWhoBoy0: [8, 66, 301, 45, 10, 2, 5.52, 9.54],
-  wfhWhoBoy2: [9, 66, 301, 65, 9, 6 , 6.53, 8.83],
-  wfhWhoGirl0: [10, 66, 301, 45, 10, 2, 5.52, 9.54],
-  wfhWhoGirl2: [11, 66, 301, 65, 12.7, 6, 6.53, 8.35],
-  bfaWhoBoy0: [12, 66, 301, 0, 13.5, 10, 14.95, 16.91],
-  bfaWhoGirl0: [13, 66, 301, 0, 13.5, 10, 14.95, 16.91],
-  wfaCdcBoy2: [14, 89.3, 589.5, 24, 14, 10, 1.46, 3.3],
-  hfaCdcBoy2: [14, 89.3, 589.5, 24, 129.5, 80, 1.46, 3.3],
-  wfaCdcGirl2: [15, 89.3, 589.5, 24, 14, 10, 1.46, 3.3],
-  hfaCdcGirl2: [15, 89.3, 589.5, 24, 129.5, 80, 1.46, 3.3],
-  bfaCdcBoy2: [16, 67.2, 565, 24, 37, 12, 1.665, 18.58],
-  bfaCdcGirl2: [17, 67.2, 565, 24, 37, 12, 1.665, 18.58]
+	wfaWhoBoy0: [0, 66*r, 301*r, 0, 8*r, 2, 14.95*r, 14.05*r],
+  wfaWhoBoy2: [1, 66*r, 301*r, 24, 0*r, 8, 9.97*r, 11.5*r],
+  wfaWhoGirl0: [2, 66*r, 301*r, 0, 8*r, 2, 14.95*r, 14.05*r],
+  wfaWhoGirl2: [3, 66*r, 301*r, 24, 0*r, 7, 9.97*r, 10*r],
+  hfaWhoBoy0: [4, 66*r, 301*r, 0, 12*r, 45, 14.95*r, 4.03*r],
+  hfaWhoBoy2: [5, 66*r, 301*r, 24, 19*r, 80, 9.97*r, 4.69*r],
+  hfaWhoGirl0: [6, 66*r, 301*r, 0, 12*r, 45, 14.95*r, 4.03*r],
+  hfaWhoGirl2: [7, 66*r, 301*r, 24, 19*r, 80, 9.97*r, 4.69]*r,
+  wfhWhoBoy0: [8, 66*r, 301*r, 45, 10*r, 2, 5.52*r, 9.54*r],
+  wfhWhoBoy2: [9, 66*r, 301*r, 65, 9*r, 6 , 6.53*r, 8.83*r],
+  wfhWhoGirl0: [10, 66*r, 301*r, 45, 10*r, 2, 5.52*r, 9.54*r],
+  wfhWhoGirl2: [11, 66*r, 301*r, 65, 12.7*r, 6, 6.53*r, 8.35*r],
+  bfaWhoBoy0: [12, 66*r, 301*r, 0, 13.5*r, 10, 14.95*r, 16.91*r],
+  bfaWhoGirl0: [13, 66*r, 301*r, 0, 13.5*r, 10, 14.95*r, 16.91*r],
+  wfaCdcBoy2: [14, 89.3*r, 589.5*r, 24, 14*r, 10, 1.46*r, 3.3*r],
+  hfaCdcBoy2: [14, 89.3*r, 589.5*r, 24, 129.5*r, 80, 1.46*r, 3.3*r],
+  wfaCdcGirl2: [15, 89.3*r, 589.5*r, 24, 14*r, 10, 1.46*r, 3.3*r],
+  hfaCdcGirl2: [15, 89.3*r, 589.5*r, 24, 129.5*r, 80, 1.46*r, 3.3*r],
+  bfaCdcBoy2: [16, 67.2*r, 565*r, 24, 37*r, 12, 1.665*r, 18.58*r],
+  bfaCdcGirl2: [17, 67.2*r, 565*r, 24, 37*r, 12, 1.665*r, 18.58*r]
 }
 
 
