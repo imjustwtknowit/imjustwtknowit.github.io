@@ -28,12 +28,13 @@ li button:hover {
 }
 
 .column.left {
-  width: 80%;
-  padding: 1px;
+  float: left;
+  width: 30%;
 }
 
 .column.right {
-  width: 100%;
+  float: right;
+  width: 500px;
   max-width: 500px;
 }
 
@@ -41,10 +42,22 @@ li button:hover {
   width: 100%
 }
 
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width:600px) {
-  .column {
+@media screen and (max-width:750px) {
+  .column.right {
+    width: 100%;
+    float: none;
+  }
+  .column.left {
     width: 100%;
   }
 }
