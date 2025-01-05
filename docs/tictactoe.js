@@ -208,8 +208,49 @@ function checkWin(who){
   
   if (win == true){
   	
-  	tText.innerHTML = "The winner is " + theWinner + "!";
+    tText.innerHTML = "The winner is " + theWinner + "!";
     cover.style.visibility = "visible";
+    let numWin = [a, b, c];
+    
+    numWin.sort(function(p, q){return p-q});
+    let pWin = [pColl[numWin[0] - 1], pColl[numWin[1] - 1], pColl[numWin[2] - 1]];
+    let pWidth = Number(pWin[0].getAttribute("width"));
+    tText.innerHTML = numWin;
+    
+    let x1,y1,x2,y2;
+    
+    let numDiff = numWin[1] - numWin[0];
+    if (numDiff == 1){
+    	x1 = Number(pWin[0].getAttribute("x")) - 10;
+      x2 = Number(pWin[2].getAttribute("x")) + pWidth + 10;
+      y1 = Number(pWin[0].getAttribute("y")) + pWidth/2;
+      y2 = Number(pWin[2].getAttribute("y")) + pWidth/2;
+    } else if (numDiff == 3){
+    	x1 = Number(pWin[0].getAttribute("x")) + pWidth/2;
+      x2 = Number(pWin[2].getAttribute("x")) + pWidth/2;
+      y1 = Number(pWin[0].getAttribute("y")) - 10;
+      y2 = Number(pWin[2].getAttribute("y")) + pWidth + 10;
+    } else if (numDiff == 4){
+    	x1 = Number(pWin[0].getAttribute("x")) - 10;
+      x2 = Number(pWin[2].getAttribute("x")) + pWidth + 10;
+      y1 = Number(pWin[0].getAttribute("y")) - 10;
+      y2 = Number(pWin[2].getAttribute("y")) + pWidth + 10;
+    } else if (numDiff == 2){
+    	x1 = Number(pWin[0].getAttribute("x")) + pWidth + 10;
+      x2 = Number(pWin[2].getAttribute("x")) - 10;
+      y1 = Number(pWin[0].getAttribute("y")) - 10;
+      y2 = Number(pWin[2].getAttribute("y")) + pWidth + 10;
+    }
+    
+    const lineWin = document.createElementNS(svgNS, "line");
+    lineWin.setAttribute("x1", x1);
+    lineWin.setAttribute("y1", y1);
+    lineWin.setAttribute("x2", x2);
+    lineWin.setAttribute("y2", y2);
+    lineWin.setAttribute("stroke", "green");
+    lineWin.setAttribute("stroke-width", 8);
+    lineWin.setAttribute("class", "piece");
+    svgF.appendChild(lineWin);
     
   }
   return win;
