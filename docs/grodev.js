@@ -18,6 +18,7 @@ if (newWidth < 500){
 }
 
 const svgF = document.getElementById("svgF");
+const textWait = document.getElementById("textWait");
 const svgNS = "http://www.w3.org/2000/svg";
 const img = document.getElementById("img");
 const genderLk = document.getElementById("Lk");
@@ -296,7 +297,9 @@ async function calcIt(){
 	res = getRes(chartType, gen, age, w, h, bmi);
   itp.innerHTML = res;
   
-  await waitForImage(img);
+  
+  textWait.innerHTML = "loading..."
+  document.querySelector("#img").style.display = "none";
   
   let old = document.getElementsByClassName("plot");
   if (old !== null){
@@ -304,6 +307,11 @@ async function calcIt(){
     	old[0].remove();
     }
   }
+
+  await waitForImage(img);
+  
+  textWait.innerHTML = "";
+  document.querySelector("#img").style.display = "block";
   
   if (chartType == "wfh" && age > 60){
   	let hIt = false;
