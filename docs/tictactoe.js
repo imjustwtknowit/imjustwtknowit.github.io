@@ -215,7 +215,7 @@ function checkWin(who){
     numWin.sort(function(p, q){return p-q});
     let pWin = [pColl[numWin[0] - 1], pColl[numWin[1] - 1], pColl[numWin[2] - 1]];
     let pWidth = Number(pWin[0].getAttribute("width"));
-    tText.innerHTML = numWin;
+    //tText.innerHTML = numWin;
     
     let x1,y1,x2,y2;
     
