@@ -490,6 +490,7 @@ function getVal(c, g, a, w, h, b){
           plotVal = plotArr.bfaCdcGirl2.slice();
         }      
       }
+      	break;
     default:
     	tText.innerHTML = "Error!";
   }
