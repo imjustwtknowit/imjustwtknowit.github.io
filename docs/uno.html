@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UNO</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="style.css" rel="stylesheet">
+
+</head>
+<body >
+  <h1>UNO</h1>
+  <p>Let's play <b>UNO!</b></p>
+  <button id="startBut" onclick="start()">Start</button>
+  <label for="players">Number of players:</label>
+  <select name="players" id="players">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
+  <p id="tText"></p>
+  <p id="aText"></p>
+  <svg id="svgF" version="1.1" width="600" height="500" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="600" height="500" stroke="black" fill="gainsboro"></rect>
+  </svg>
+  <p id="log">Log: <br></p>
+  <script src="uno.js"></script>
+
+
+</body>
+</html>
