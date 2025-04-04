@@ -231,7 +231,11 @@ function slideTouch(event){
 	event.preventDefault();
   xTouch2 = event.touches[0].clientX;
   yTouch2 = event.touches[0].clientY;
-  tText.innerHTML = "(" + xTouch1 + "," + yTouch1 + ") | (" + xTouch2 + "," + yTouch2 + ")";
+  
+}
+
+function regTouch(event){
+  //tText.innerHTML = "(" + xTouch1 + "," + yTouch1 + ") | (" + xTouch2 + "," + yTouch2 + ")";
   
   let xSlide = xTouch2 - xTouch1;
   let ySlide = yTouch2 - yTouch1;
@@ -249,7 +253,6 @@ function slideTouch(event){
     }
   }
 }
-
 
 function keyDown(event){
   let key = event.key;
