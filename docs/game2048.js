@@ -224,6 +224,7 @@ function startTouch(event){
 	
   xTouch1 = event.touches[0].clientX;
   yTouch1 = event.touches[0].clientY;
+  tText.innerHTML = xTouch1;
 }
 
 function slideTouch(event){
