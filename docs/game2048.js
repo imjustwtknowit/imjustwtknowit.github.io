@@ -224,14 +224,14 @@ function startTouch(event){
 	
   xTouch1 = event.touches[0].clientX;
   yTouch1 = event.touches[0].clientY;
-  tText.innerHTML = xTouch1;
+  //tText.innerHTML = xTouch1;
 }
 
 function slideTouch(event){
 	event.preventDefault();
   xTouch2 = event.touches[0].clientX;
   yTouch2 = event.touches[0].clientY;
-  tText.innerHTML = "(" + xTouch1 + "," + yTouch1 + ") | (" + xTTouch2 + "," + yTouch2 + ")";
+  tText.innerHTML = "(" + xTouch1 + "," + yTouch1 + ") | (" + xTouch2 + "," + yTouch2 + ")";
   
   let xSlide = xTouch2 - xTouch1;
   let ySlide = yTouch2 - yTouch1;
