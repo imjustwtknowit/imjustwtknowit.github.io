@@ -12,6 +12,9 @@ let xF = (wBox - dField)/2;
 let yF = 50;
 let score = 0;
 
+let keyDisabled = false;
+let keyReg = [];
+
 let xTouch1;
 let xTouch2;
 let yTouch1;
@@ -72,16 +75,22 @@ drawField();
 
 
 function resetGame(){
-	
+  keyDisabled = true;
+  overScreen();
   stBut.innerHTML = "Restart";
   stBut.removeAttribute("disabled");
 }
 
 function restartGame(){
   m = 0;
+  keyReg.length = 0;
+  keyDisabled = false;
   tText.innerHTML = "";
   score = 0;
   scr.textContent = "Score: " + score;
+  while(document.getElementsByClassName("over").length > 0){
+  	document.getElementsByClassName("over")[0].remove();
+  }
   while (regTile.id.length > 0){
   	clearTile(regTile.id[0]);
   }
@@ -92,7 +101,7 @@ function restartGame(){
 
 
 
-async function drawTile(x, y, n){
+function drawTile(x, y, n, type){
   let xTl = xF + d + (x)*(u+d);
   let yTl = yF + d + (y)*(u+d);
   let id = m;
@@ -154,14 +163,22 @@ async function drawTile(x, y, n){
 
       if (t > s){
         clearInterval(zoomIt);
-        
+        if (type !== "merge"){
+        	tilesDrawn();
+        }
       }
     }, 10);
 	
  
 }
 
-
+function tilesDrawn(){
+	keyDisabled = false;
+  //tText.innerHTML = keyReg;
+  if (keyReg.length !== 0){
+  	tryMove(keyReg[0]);
+  }
+}
 
 function newTile(){
   if (m == 0){
@@ -184,7 +201,8 @@ function newTile(){
       let xP = (tP % 4);
       let yP = Math.floor(tP/4);
       m ++;
-      drawTile(xP, yP, tN);
+      drawTile(xP, yP, tN, "draw");
+      //tText.innerHTML += "(" + xP + "," + yP + ")<br>";
       
     }
   } else {
@@ -207,11 +225,11 @@ function newTile(){
     let yP = Math.floor(tP/4);
     m ++;
     
-    drawTile(xP, yP, tN);
+    drawTile(xP, yP, tN, "draw");
+    //tText.innerHTML += "(" + xP + "," + yP + ")<br>";
     let isPossible = movePossible();
 
     if(isPossible == false){
-    	tText.innerHTML = "Game over!";
       resetGame();
     }
   }
@@ -224,7 +242,6 @@ function startTouch(event){
 	
   xTouch1 = event.touches[0].clientX;
   yTouch1 = event.touches[0].clientY;
-  //tText.innerHTML = xTouch1;
 }
 
 function slideTouch(event){
@@ -236,7 +253,6 @@ function slideTouch(event){
 
 function regTouch(event){
   //tText.innerHTML = "(" + xTouch1 + "," + yTouch1 + ") | (" + xTouch2 + "," + yTouch2 + ")";
-  
   let xSlide = xTouch2 - xTouch1;
   let ySlide = yTouch2 - yTouch1;
   if (Math.abs(xSlide) > Math.abs(ySlide)){
@@ -254,20 +270,40 @@ function regTouch(event){
   }
 }
 
+
 function keyDown(event){
   let key = event.key;
-	tryMove(key)
+	if (key == "w" || key == "W" || key == "s" || key == "S" || key == "a" || key == "A" || key == "d" || key == "D"){
+  	regKey(key);
+  }
   
 }
 
+function regKey(key){
+	keyReg.push(key);
+  //tText.innerHTML = keyReg;
+  if (keyDisabled == true){
+  
+  } else {
+    tryMove(key);
+  }
+}
 
-function tryMove(key){
+
+async function tryMove(key){
+	
+  keyDisabled = true;
+  
 	let moving = false;
+  //tText.innerHTML = keyReg;
   let merging = false;
-
+	//let testArr = [];
   if (key == "w" || key == "W" || key == "s" || key == "S"){
-
-    for (let i1 = 0; i1 < 4; i1 ++){
+		keyReg.splice(0,1);
+    let mergedArr = [];
+    let waitMove = new Promise(function(resolve){
+    for (let i1 = 0; i1 < 5; i1 ++){
+      
       let xCol = i1;
       let yIdArr = [];
       regTile.xP.forEach(function tileInThisCol(value, index, arr){
@@ -305,7 +341,8 @@ function tryMove(key){
       })
 
       let skipM = false;
-      let mergedArr = [];
+      let toMerge = [];
+      let yOldArr = [];
 
       for (let i3 = ySortedArr.id.length - 2; i3 >= 0; i3 --){
         if (skipM == true){
@@ -314,25 +351,35 @@ function tryMove(key){
         let id1 = Number(ySortedArr.id[i3]);
         let id2 = Number(ySortedArr.id[i3 + 1]);
         skipM = false;
+        if (toMerge.includes(id1) || toMerge.includes(id2)){
+        	continue;
+        }
 
         if (regTile.num[regTile.id.indexOf(id1)] == regTile.num[regTile.id.indexOf(id2)]){
-          let mergedVar = mergeTile(id1, id2);
-          let mergeY = mergedVar.slice(2, 3);
-          let mergeId = mergedVar.slice(4);
-          mergedArr.push(mergeY + "-" + mergeId);
+          
+          let mergePair = [id1, id2];
+          mergedArr.push(mergePair);
+          
+          toMerge.push(id1);
+          
+
+          let mergedInto = regTile.id.indexOf(id2);
+  				let mergeNum = regTile.num[mergedInto] + 1;
+  				let mergeX = regTile.xP[mergedInto];
+  				let mergeY = regTile.yP[mergedInto];
+          
+          let ind = ySortedArr.y.indexOf(mergeY.toString());
+          let xOld = ySortedArr.y[ind - 1];
+          yOldArr.push(xOld);
+          ySortedArr.y[ind - 1] = mergeY;
+          
+
           merging = true;
 
         }
       }
-      
-      for (let i4 = 0; i4 < mergedArr.length; i4 ++){
-        let mergeY = mergedArr[i4].slice(0,1);
-        let mergeId = mergedArr[i4].slice(2);
-        let ind = ySortedArr.y.indexOf(mergeY);
-        ySortedArr.y.splice(ind - 1, 2, mergeY);
-        ySortedArr.id.splice(ind - 1, 2, mergeId);
-      }
 
+      
       let yRef;
       let yInc;
       if (key == "w" || key == "W"){
@@ -346,26 +393,66 @@ function tryMove(key){
 
 
       for (let i5 = ySortedArr.y.length - 1; i5 >= 0; i5 --){
-        let yInit = ySortedArr.y[i5];
-        let tlId = ySortedArr.id[i5];
+        
+        let tlId = Number(ySortedArr.id[i5]);
+        let yInit;
+        if (toMerge.includes(tlId)){
+        	yInit = yOldArr[toMerge.indexOf(tlId)];
+        } else {
+        	yInit = ySortedArr.y[i5];
+        }
+        
         const tlMove = document.getElementById(tlId);
         const numMove = document.getElementById("n" + tlId);
         let yTl = tlMove.getAttribute("y");
         let yNum = numMove.getAttribute("y");
+        
         let yLast;
         if (i5 == ySortedArr.y.length - 1){
           yLast = yRef;
         } else {
-          yLast = Number(ySortedArr.y[i5 + 1]) + yInc;
+          if (toMerge.includes(tlId)){
+          	yLast = Number(ySortedArr.y[i5 + 1]);
+          } else {
+          	yLast = Number(ySortedArr.y[i5 + 1]) + yInc;
+          }
         }
+        
         let yDist = (yInit - yLast);
-        let yTlN = yTl - yDist*(u + d);
-        let yNumN = yNum - yDist*(u + d);
-        tlMove.setAttribute("y", yTlN);
-        numMove.setAttribute("y", yNumN);
+        let dDist = yDist*(u + d);
+        let yTlN = yTl - dDist;
+        let yNumN = yNum - dDist;
+        
+        function moveSlowly(tile, num, axis, dT, dN, inc){
+          let tlMove = tile;
+          let numMove = num;  
 
-        //moveSlowly(tlMove, numMove, "y", yTlN, yNumN)
+          let slowly = setInterval(function(){
+            let tlInit = Number(tlMove.getAttribute(axis));
+            let numInit = Number(numMove.getAttribute(axis));
 
+            tlMove.setAttribute(axis, tlInit - inc);
+            numMove.setAttribute(axis,numInit - inc);
+            if (Number(tlMove.getAttribute(axis)) == dT){
+              clearInterval(slowly);
+              return resolve();
+            }
+          }, 10);
+
+        }
+        
+        let increment
+        if (yDist == 0){
+        	increment = 0;
+        } else {
+        	increment = dDist/(3);
+          moveSlowly(tlMove, numMove, "y", yTlN, yNumN, increment);
+        }
+        
+        //tlMove.setAttribute("y", yTlN);
+        //numMove.setAttribute("y", yNumN);
+				
+        
         ySortedArr.y[i5] = yInit - yDist;
         regTile.yP[regTile.id.indexOf(Number(tlId))] -= yDist;
 
@@ -375,10 +462,25 @@ function tryMove(key){
       }
 
     }
-
+    
+    if (moving == false){
+    	return resolve();
+    }
+    
+		});
+    
+    await waitMove;
+    for (let i6 = 0; i6 < mergedArr.length; i6 ++){
+      	mergeTile(mergedArr[i6][0], mergedArr[i6][1])
+    }
 
   } else if (key == "a" || key == "A" || key == "d" || key == "D"){
+    keyReg.splice(0,1);
+    let mergedArr = [];
+    let waitMove = new Promise(function(resolve){
     for (let i1 = 0; i1 < 4; i1 ++){
+      
+      
       let yCol = i1;
       let xIdArr = [];
       regTile.yP.forEach(function tileInThisCol(value, index, arr){
@@ -416,7 +518,9 @@ function tryMove(key){
       })
 
       let skipM = false;
-      let mergedArr = [];
+      let toMerge = [];
+      let xOldArr = [];
+      
 
       for (let i3 = xSortedArr.id.length - 2; i3 >= 0; i3 --){
         if (skipM == true){
@@ -425,25 +529,35 @@ function tryMove(key){
         let id1 = Number(xSortedArr.id[i3]);
         let id2 = Number(xSortedArr.id[i3 + 1]);
         skipM = false;
+        if (toMerge.includes(id1) || toMerge.includes(id2)){
+        	continue;
+        }
 
         if (regTile.num[regTile.id.indexOf(id1)] == regTile.num[regTile.id.indexOf(id2)]){
-          let mergedVar = mergeTile(id1, id2);
-          let mergeX = mergedVar.slice(0, 1);
-          let mergeId = mergedVar.slice(4);
-          mergedArr.push(mergeX + "-" + mergeId);
+          let mergePair = [id1, id2];
+          mergedArr.push(mergePair);
+          
+          toMerge.push(id1);
+          
+
+          let mergedInto = regTile.id.indexOf(id2);
+  				let mergeNum = regTile.num[mergedInto] + 1;
+  				let mergeX = regTile.xP[mergedInto];
+  				let mergeY = regTile.yP[mergedInto];
+          
+          let ind = xSortedArr.x.indexOf(mergeX.toString());
+          let xOld = xSortedArr.x[ind - 1];
+          xOldArr.push(xOld);
+          xSortedArr.x[ind - 1] = mergeX;
+          
+
           merging = true;
 
         }
       }
       
-      for (let i4 = 0; i4 < mergedArr.length; i4 ++){
-        let mergeX = mergedArr[i4].slice(0,1);
-        let mergeId = mergedArr[i4].slice(2);
-        let ind = xSortedArr.x.indexOf(mergeX);
-        xSortedArr.x.splice(ind - 1, 2, mergeX);
-        xSortedArr.id.splice(ind - 1, 2, mergeId);
-      }
-
+      
+			
       let xRef;
       let xInc;
       if (key == "a" || key == "A"){
@@ -454,11 +568,20 @@ function tryMove(key){
         xRef = 3;
         xInc = 0-1;
       }
-
-
+		
+      
       for (let i5 = xSortedArr.x.length - 1; i5 >= 0; i5 --){
-        let xInit = xSortedArr.x[i5];
-        let tlId = xSortedArr.id[i5];
+        
+        
+        let tlId = Number(xSortedArr.id[i5]);
+        let xInit
+        if (toMerge.includes(tlId)){
+        	xInit = xOldArr[toMerge.indexOf(tlId)];
+        } else {
+        	xInit = xSortedArr.x[i5];
+        }
+        
+        
         const tlMove = document.getElementById(tlId);
         const numMove = document.getElementById("n" + tlId);
         let xTl = Number(tlMove.getAttribute("x"));
@@ -467,7 +590,12 @@ function tryMove(key){
         if (i5 == xSortedArr.x.length - 1){
           xLast = xRef;
         } else {
-          xLast = Number(xSortedArr.x[i5 + 1]) + xInc;
+          if (toMerge.includes(tlId)){
+          	xLast = Number(xSortedArr.x[i5 + 1]);
+          } else {
+          	xLast = Number(xSortedArr.x[i5 + 1]) + xInc;
+          }
+          
         }
         let xDist = (xInit - xLast);
         
@@ -475,14 +603,41 @@ function tryMove(key){
 
         let xTlN = xTl - dDist;
         let xNumN = xNum - dDist;
-        tlMove.setAttribute("x", xTlN);
-        numMove.setAttribute("x", xNumN);
+        
+        
+        
+        //tlMove.setAttribute("x", xTlN);
+        //numMove.setAttribute("x", xNumN);
         
 
         
-        //moveSlowly(tlMove, numMove, "x", xTlN, xNumN)
+        function moveSlowly(tile, num, axis, dT, dN, inc){
+          let tlMove = tile;
+          let numMove = num;  
 
+          let slowly = setInterval(function(){
+            let tlInit = Number(tlMove.getAttribute(axis));
+            let numInit = Number(numMove.getAttribute(axis));
 
+            tlMove.setAttribute(axis, tlInit - inc);
+            numMove.setAttribute(axis,numInit - inc);
+            if (Number(tlMove.getAttribute(axis)) == dT){
+              clearInterval(slowly);
+              return resolve();
+            }
+          }, 10);
+
+        }
+        
+        let increment;
+				if (xDist == 0){
+        	increment = 0;
+          
+        } else {
+        	increment = dDist/(3);
+          moveSlowly(tlMove, numMove, "x", xTlN, xNumN, increment);
+        }
+				
 
         xSortedArr.x[i5] = xInit - xDist;
         regTile.xP[regTile.id.indexOf(Number(tlId))] -= xDist;
@@ -491,23 +646,35 @@ function tryMove(key){
           moving = true;
         }
       }
+    
     }
+    
+    if (moving == false){
+    	return resolve();
+    }
+    
+    
+    });
+    
+    
+    await waitMove;
+    for (let i6 = 0; i6 < mergedArr.length; i6 ++){
+      	mergeTile(mergedArr[i6][0], mergedArr[i6][1])
+    }
+    
+    
+    
   }
 
+  //tText.innerHTML = testArr[0] + " | " + testArr[1] + " | " + testArr[2] + " | " + testArr[3]
+
+  
   if (moving == true || merging == true){
-    setTimeout(newTile, 100);
+    newTile();   
+  } else {
+    tilesDrawn();
   }
-}
-
-
-
-function moveSlowly(tile, num, axis, dT, dN){
-  let tlMove = tile;
-  let numMove = num;  
-
-  tile.setAttribute(axis, dT);
-  num.setAttribute(axis,dN);
-
+  
 }
 
 
@@ -522,16 +689,13 @@ function mergeTile(a, b){
   m ++;
   
   
-  drawTile(mergeX, mergeY, mergeNum);
-
+  drawTile(mergeX, mergeY, mergeNum, "merge");
   clearTile(id1);
   clearTile(id2);
-  
   
   score += 2**mergeNum;
   scr.textContent = "Score: " + score;
 
-  return mergeX + "-" + mergeY + "-" + m;
 }
 
 function clearTile(a){
@@ -599,5 +763,58 @@ function movePossible(){
   } else {
   	return true;
   }
+  
+}
+
+
+function overScreen(){
+	let wBox = Number(svgBox.getAttribute("width"));
+  let hBox = Number(svgBox.getAttribute("height"));
+  let gradArr = ["#FFFF9900", "#FFFF9920", "#FFFF9940", "#FFFF9960", "#FFFF9980"]
+  const over = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  over.setAttribute("x", 0);
+  over.setAttribute("y", 0);
+  over.setAttribute("width", wBox);
+  over.setAttribute("height", hBox);
+  over.setAttribute("fill", "#FFFF9900");
+  over.setAttribute("class", "over");
+	svgF.appendChild(over);
+  
+  function overText(){
+  	const gameOver = document.createTextNode("Game over!")
+    const tGradArr = ["#33333300", "#33333340", "#33333380", "#333333C0", "#333333"]
+    const oText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    oText.setAttribute("x", wBox/2);
+    oText.setAttribute("y", hBox/2);
+    oText.setAttribute("dominant-baseline", "middle");
+    oText.setAttribute("text-anchor", "middle");
+    oText.setAttribute("font-family", "sans-serif");
+    oText.setAttribute("font-weight", "bold");
+    oText.setAttribute("fill", "#33333300");
+    oText.setAttribute("class", "over");
+    oText.setAttribute("font-size", 40);
+    oText.appendChild(gameOver);
+    svgF.appendChild(oText);
+    let p = 1;
+    let changeText = setInterval(function(){
+      oText.setAttribute("fill", tGradArr[p]);
+      p ++;
+      if (p > tGradArr.length - 1){
+        clearInterval(changeText);
+      }
+    }, 100);
+    
+  }
+  
+  let t = 1;
+  let changeOver = setInterval(function(){
+  	over.setAttribute("fill", gradArr[t]);
+    t ++;
+    if (t > gradArr.length - 1){
+    	clearInterval(changeOver);
+      overText();
+    }
+  }, 100);
+  
   
 }
