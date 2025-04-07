@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snake</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body onkeydown="keyDown(event)">
+  <h1>Snake Game</h1>
+  <p>This is a snake game. Control the snake by using WASD keys or swiping in the game field. Try to eat as much food as possible.</p>
+  <p id="text"></p>
+  <button id="startBut" type="button" onclick="restartGame()">Start Game</button>
+  <label for="map">Map type:</label>
+  <select name="map" id="map">
+    <option value="none">Classic</option>
+    <option value="single">Single</option>
+    <option value="cross">Cross</option>
+    <option value="box">Box</option>
+    <option value="half">Half</option>
+    <option value="corner">Corner</option>
+    <option value="alleys">Alleys</option>
+    <option value="fan">Fan</option>
+    <option value="rooms">Rooms</option>
+  </select>
+
+  <br>
+  <p id="scoreBoard">Score: </p>
+
+
+<svg id="svgT" version="1.1"
+     width="500" height="500"
+     xmlns="http://www.w3.org/2000/svg" ontouchstart="startTouch(event)" ontouchmove="slideTouch(event)" ontouchend="regTouch(event)">
+  <rect id="r0" x="0" y="0" width="500" height="500" stroke="black" fill="transparent"></rect>
+</svg>
+  <script src="snake.js"></script>
+</body>
+</html>
