@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sudoku</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <link href="sudokustyle.css" rel="stylesheet">
+</head>
+
+
+<body>
+  <h1>Sudoku</h1>
+  <p>It's sudoku time! You can create a solved sudoku grid, make the computer solve a sudoku puzzle, and try to solve a sudoku puzzle by yourself!</p>
+  <label for="mode">Mode: </label>
+  <select name="mode" id="mode" onchange="startMode()">
+    <option value="play" selected>Sudoku puzzle generator</option>
+    <option value="solve">Sudoku puzzle solver</option>
+    <option value="grid" >Sudoku grid creator</option>
+  </select>
+  <p id="sudTest"></p>
+  <label for="difficulty" id="difficultyLabel">Difficulty level: </label>
+  <select name="difficulty" id="difficulty" onchange="createPuzzle()">
+    <option value="1" selected>1</option>
+    <option value="2">2</option>
+    <option value="3" >3</option>
+  </select>
+  <button type="button" id="createBut" onclick="createGrid()">Create new grid!</button>
+  <button type="button" id="solveBut" onclick="trySolve()">Try solve!</button>
+  <button type="button" id="puzzleBut" onclick="createPuzzle()">Create new puzzle!</button>
+  <button type="button" id="solvPuzBut" onclick="trySolvePuzzle()">See solution!</button>
+  <div class="message" id="loadMsg">Loading...</div>
+  <p id="fillTest"></p>
+  <p id="addText"></p>
+  <p id="resTest"></p>
+  <br>
+  <div id="butDiv">
+    <button type="button" id="numBut1" onclick="clickButton('1')">1</button>
+    <button type="button" id="numBut1" onclick="clickButton('2')">2</button>
+    <button type="button" id="numBut1" onclick="clickButton('3')">3</button>
+    <button type="button" id="numBut1" onclick="clickButton('4')">4</button>
+    <button type="button" id="numBut1" onclick="clickButton('5')">5</button>
+    <button type="button" id="numBut1" onclick="clickButton('6')">6</button>
+    <button type="button" id="numBut1" onclick="clickButton('7')">7</button>
+    <button type="button" id="numBut1" onclick="clickButton('8')">8</button>
+    <button type="button" id="numBut1" onclick="clickButton('9')">9</button>
+    <button type="button" id="numBut1" onclick="clickButton('0')">C</button>
+  </div>
+  
+  
+<script src="sudoku.js"></script>
+</body>
+
+</html>
+
