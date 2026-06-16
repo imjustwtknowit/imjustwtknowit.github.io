@@ -1,5 +1,5 @@
 {
-  "candy":[
+  "imgLink":[
     "https://imjustwtknowit.github.io/assets/candycrush/Bluecandy.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Greencandy.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Orangecandy.webp",
@@ -7,10 +7,10 @@
     "https://imjustwtknowit.github.io/assets/candycrush/Redcandy.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Yellowcandy.webp"
   ],
-  "bomb":[
+  [
     "https://imjustwtknowit.github.io/assets/candycrush/Color_Bomb.webp"
   ],
-  "wrapped":[
+  [
     "https://imjustwtknowit.github.io/assets/candycrush/Bluewrap.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Greenwrap.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Orangewrap.webp",
@@ -18,7 +18,7 @@
     "https://imjustwtknowit.github.io/assets/candycrush/Redwrap.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Yellowwrap.webp"
   ],
-  "hstriped":[
+  [
     "https://imjustwtknowit.github.io/assets/candycrush/Bluestripeh.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Greenstripeh.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Orangestripeh.webp",
@@ -26,7 +26,7 @@
     "https://imjustwtknowit.github.io/assets/candycrush/Redstripeh.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Yellowstripeh.webp"
   ],
-  "vstriped":[
+  [
     "https://imjustwtknowit.github.io/assets/candycrush/Bluestripev.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Greenstripev.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Orangestripev.webp",
@@ -34,7 +34,7 @@
     "https://imjustwtknowit.github.io/assets/candycrush/Redstripev.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Yellowstripev.webp"
   ],
-  "fish":[
+  [
     "https://imjustwtknowit.github.io/assets/candycrush/Bluefish.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Greenfish.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Orangefish.webp",
@@ -42,8 +42,8 @@
     "https://imjustwtknowit.github.io/assets/candycrush/Redfish.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Yellowfish.webp"
   ],
-  "none":[],
-  "fishwrapped":[
+  [],
+  [
     "https://imjustwtknowit.github.io/assets/candycrush/Bluefishwrapped.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Greenfishwrapped.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Orangefishwrapped.webp",
@@ -51,7 +51,7 @@
     "https://imjustwtknowit.github.io/assets/candycrush/Redfishwrapped.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Yellowfishwrapped.webp"
   ],
-  "fishstriped":[
+  [
     "https://imjustwtknowit.github.io/assets/candycrush/Bluefishstriped.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Greenfishstriped.webp",
     "https://imjustwtknowit.github.io/assets/candycrush/Orangefishstriped.webp",
